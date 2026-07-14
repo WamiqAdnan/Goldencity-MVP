@@ -5,6 +5,7 @@ import { FiArrowRight, FiUser, FiClock } from 'react-icons/fi';
 import { FaWallet, FaStore, FaMoneyBillWave, FaExchangeAlt, FaChartLine, FaLock, FaUserCog, FaCoins } from 'react-icons/fa';
 import { SiEthereum } from 'react-icons/si';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import CountUp from '../components/CountUp';
 
 function Home() {
   const [openSections, setOpenSections] = useState({});
@@ -254,8 +255,8 @@ function Home() {
       {/* Investment Steps */}
       <section className="container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4 text-sapphire-800">Start Investing in Minutes</h2>
-          <p className="text-platinum-600">Your journey to crypto-powered real estate investment</p>
+          <h2 className="text-3xl font-bold mb-4 text-sapphire-800 dark:text-platinum-100">Start Investing in Minutes</h2>
+          <p className="text-platinum-600 dark:text-platinum-300">Your journey to crypto-powered real estate investment</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -272,9 +273,9 @@ function Home() {
                 <div className="bg-gradient-to-br from-primary-100 to-primary-200 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                   <step.icon className="text-2xl text-primary-600" />
                 </div>
-                <div className="text-primary-600 text-2xl font-bold mb-4">Step {index + 1}</div>
-                <h3 className="text-xl font-semibold mb-2 text-sapphire-800">{step.title}</h3>
-                <p className="text-platinum-600">{step.description}</p>
+                <div className="text-primary-600 dark:text-primary-300 text-2xl font-bold mb-4">Step {index + 1}</div>
+                <h3 className="text-xl font-semibold mb-2 text-sapphire-800 dark:text-platinum-100">{step.title}</h3>
+                <p className="text-platinum-600 dark:text-platinum-300">{step.description}</p>
               </div>
             </motion.div>
           ))}
@@ -314,8 +315,8 @@ function Home() {
       {/* Featured Properties */}
       <section className="container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4 text-sapphire-800">Featured Investment Opportunities</h2>
-          <p className="text-platinum-600">Curated properties with verified returns and immediate tokenization</p>
+          <h2 className="text-3xl font-bold mb-4 text-sapphire-800 dark:text-platinum-100">Featured Investment Opportunities</h2>
+          <p className="text-platinum-600 dark:text-platinum-300">Curated properties with verified returns and immediate tokenization</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -334,38 +335,38 @@ function Home() {
                   alt={property.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute top-4 right-4 glass-card px-3 py-1 text-primary-600 font-semibold text-sm">
+                <div className="absolute top-4 right-4 glass-card px-3 py-1 text-primary-600 dark:text-primary-300 font-semibold text-sm">
                   {property.status}
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 text-sapphire-800">{property.title}</h3>
-                <p className="text-platinum-600 mb-4">{property.location}</p>
+                <h3 className="text-xl font-semibold mb-2 text-sapphire-800 dark:text-platinum-100">{property.title}</h3>
+                <p className="text-platinum-600 dark:text-platinum-300 mb-4">{property.location}</p>
 
                 <div className="flex justify-between items-center mb-4">
                   <div>
-                    <p className="text-sm text-platinum-500">Price</p>
-                    <p className="font-semibold text-sapphire-800">${property.price.usd.toLocaleString()}</p>
-                    <p className="text-sm text-primary-600">{property.price.eth} ETH</p>
+                    <p className="text-sm text-platinum-500 dark:text-platinum-400">Price</p>
+                    <p className="font-semibold text-sapphire-800 dark:text-platinum-100">${property.price.usd.toLocaleString()}</p>
+                    <p className="text-sm text-primary-600 dark:text-primary-300">{property.price.eth} ETH</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm text-platinum-500">ROI</p>
-                    <p className="font-semibold text-green-600">{property.roi}</p>
+                    <p className="text-sm text-platinum-500 dark:text-platinum-400">ROI</p>
+                    <p className="font-semibold text-green-600 dark:text-green-400"><CountUp end={parseFloat(property.roi)} decimals={1} suffix="% Annual" /></p>
                   </div>
                 </div>
 
                 <div className="space-y-2 mb-4">
                   <div className="flex justify-between text-sm">
-                    <span className="text-platinum-600">Total Investors</span>
-                    <span className="font-medium text-sapphire-700">{property.metrics.totalInvestors}</span>
+                    <span className="text-platinum-600 dark:text-platinum-300">Total Investors</span>
+                    <span className="font-medium text-sapphire-700 dark:text-platinum-100"><CountUp end={property.metrics.totalInvestors} /></span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-platinum-600">Funded</span>
-                    <span className="font-medium text-sapphire-700">{property.metrics.funded}</span>
+                    <span className="text-platinum-600 dark:text-platinum-300">Funded</span>
+                    <span className="font-medium text-sapphire-700 dark:text-platinum-100"><CountUp end={parseInt(property.metrics.funded, 10)} suffix="%" /></span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-platinum-600">Min Investment</span>
-                    <span className="font-medium text-sapphire-700">{property.metrics.minInvestment}</span>
+                    <span className="text-platinum-600 dark:text-platinum-300">Min Investment</span>
+                    <span className="font-medium text-sapphire-700 dark:text-platinum-100">{property.metrics.minInvestment}</span>
                   </div>
                 </div>
 
@@ -383,11 +384,11 @@ function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="bg-gradient-to-br from-sapphire-50 to-platinum-100 pt-16">
+      <section className="bg-gradient-to-br from-sapphire-50 to-platinum-100 dark:from-secondary-900 dark:to-sapphire-900 pt-16">
         <div className="container">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-sapphire-800">Why Choose GoldenCity</h2>
-            <p className="text-platinum-600">Experience the future of real estate investment</p>
+            <h2 className="text-3xl font-bold mb-4 text-sapphire-800 dark:text-platinum-100">Why Choose GoldenCity</h2>
+            <p className="text-platinum-600 dark:text-platinum-300">Experience the future of real estate investment</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -400,9 +401,9 @@ function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
               >
-                <advantage.icon className="text-4xl text-primary-600 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
-                <h3 className="text-xl font-semibold mb-2 text-sapphire-800">{advantage.title}</h3>
-                <p className="text-platinum-600">{advantage.description}</p>
+                <advantage.icon className="text-4xl text-primary-600 dark:text-primary-300 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
+                <h3 className="text-xl font-semibold mb-2 text-sapphire-800 dark:text-platinum-100">{advantage.title}</h3>
+                <p className="text-platinum-600 dark:text-platinum-300">{advantage.description}</p>
               </motion.div>
             ))}
           </div>
@@ -421,7 +422,7 @@ function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/properties"
-                className="btn-secondary bg-glass-light text-primary-700 hover:bg-white border-white/30"
+                className="btn-secondary bg-glass-light text-primary-700 dark:text-primary-700 hover:bg-white hover:text-primary-700 border-white/30"
               >
                 Browse Properties
               </Link>
@@ -437,14 +438,14 @@ function Home() {
       </section>
 
       {/* Blog */}
-      <div className="container bg-white py-24">
+      <div className="container bg-white dark:bg-transparent py-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center max-w-3xl mx-auto mb-12"
         >
           <h1 className="text-3xl font-bold mb-4">Latest Insights</h1>
-          <p className="text-secondary-600">
+          <p className="text-secondary-600 dark:text-platinum-300">
             Stay informed with our latest articles and market analysis
           </p>
         </motion.div>
@@ -458,7 +459,7 @@ function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-lg shadow-md overflow-hidden"
+              className="bg-white dark:bg-secondary-800 rounded-lg shadow-md overflow-hidden"
             >
               <Link to={`/blog/${post.slug}`}>
                 <div className="relative h-48">
@@ -467,18 +468,18 @@ function Home() {
                     alt={post.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-sm font-medium text-primary-600">
+                  <div className="absolute top-4 right-4 bg-white dark:bg-secondary-700 px-3 py-1 rounded-full text-sm font-medium text-primary-600 dark:text-primary-300">
                     {categories.find(c => c.id === post.category)?.name}
                   </div>
                 </div>
                 <div className="p-6">
-                  <h2 className="text-xl font-semibold mb-3 hover:text-primary-600 transition-colors">
+                  <h2 className="text-xl font-semibold mb-3 hover:text-primary-600 dark:hover:text-primary-300 transition-colors">
                     {post.title}
                   </h2>
-                  <p className="text-secondary-600 mb-4">
+                  <p className="text-secondary-600 dark:text-platinum-300 mb-4">
                     {post.excerpt}
                   </p>
-                  <div className="flex items-center text-sm text-secondary-500">
+                  <div className="flex items-center text-sm text-secondary-500 dark:text-platinum-400">
                     <FiUser className="mr-2" />
                     <span className="mr-4">{post.author}</span>
                     <FiClock className="mr-2" />
@@ -500,12 +501,12 @@ function Home() {
         >
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
-            <p className="text-secondary-600">Find answers to common questions about our platform, cryptocurrency payments, and real estate investment.</p>
+            <p className="text-secondary-600 dark:text-platinum-300">Find answers to common questions about our platform, cryptocurrency payments, and real estate investment.</p>
           </div>
           <div className="space-y-8">
             {faqSections.map((section, sectionIndex) => (
-              <div key={sectionIndex} className="bg-white rounded-lg shadow-md overflow-hidden">
-                <div className="divide-y divide-secondary-100">
+              <div key={sectionIndex} className="bg-white dark:bg-secondary-800 rounded-lg shadow-md overflow-hidden">
+                <div className="divide-y divide-secondary-100 dark:divide-secondary-700">
                   {section.questions.map((item, questionIndex) => (
                     <div key={questionIndex} className="p-6">
                       <button
@@ -528,7 +529,7 @@ function Home() {
                             transition={{ duration: 0.3 }}
                             className="overflow-hidden"
                           >
-                            <p className="mt-4 text-secondary-600">
+                            <p className="mt-4 text-secondary-600 dark:text-platinum-300">
                               {item.answer}
                             </p>
                           </motion.div>
@@ -565,7 +566,7 @@ function Home() {
                   </div>
                   <div className="ml-4">
                     <dt className="text-lg leading-6 font-medium text-white">
-                      10,000+ Members
+                      <CountUp end={10000} suffix="+" /> Members
                     </dt>
                     <dd className="mt-2 text-base text-primary-100">
                       Join a growing community of crypto-savvy real estate investors
@@ -594,11 +595,11 @@ function Home() {
             </div>
 
             <div className="mt-12 lg:mt-0 flex justify-center">
-              <div className="bg-white rounded-lg shadow-xl p-8 max-w-sm w-full">
-                <h3 className="text-2xl font-bold text-gray-900 text-center mb-6">
+              <div className="bg-white dark:bg-secondary-800 rounded-lg shadow-xl p-8 max-w-sm w-full">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-platinum-100 text-center mb-6">
                   Join Discord
                 </h3>
-                <p className="text-gray-500 text-center mb-8">
+                <p className="text-gray-500 dark:text-platinum-400 text-center mb-8">
                   Get instant access to our community and start connecting with other investors
                 </p>
                 <a
@@ -609,7 +610,7 @@ function Home() {
                 >
                   Join Now
                 </a>
-                <p className="mt-4 text-sm text-gray-500 text-center">
+                <p className="mt-4 text-sm text-gray-500 dark:text-platinum-400 text-center">
                   Already a member?{' '}
                   <a href="https://discord.gg/GoldenCity" className="text-indigo-600 hover:text-indigo-500">
                     Sign in

@@ -8,10 +8,23 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
-    @apply font-sans text-sapphire-800 bg-gradient-to-br from-sapphire-50 via-white to-platinum-50;
+    @apply font-sans text-sapphire-800 bg-gradient-to-br from-sapphire-50 via-white to-platinum-50 transition-colors duration-300;
+    @apply dark:text-platinum-100 dark:from-secondary-900 dark:via-sapphire-900 dark:to-secondary-900;
     min-height: 100vh;
+  }
+
+  /* Smoothly cross-fade colors when switching themes. The anti-FOUC script in
+     public/index.html sets the theme before first paint, so this never fires on
+     load — only on an actual toggle. Elements that declare their own transition
+     utilities (btn, card, input, links) keep theirs. */
+  *,
+  *::before,
+  *::after {
+    transition-property: color, background-color, border-color, fill, stroke;
+    transition-duration: 300ms;
+    transition-timing-function: ease;
   }
 }
 
@@ -19,36 +32,43 @@
   .container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-  
+
   .btn {
     @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-xl shadow-luxe text-white bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-300;
   }
 
   .btn-secondary {
     @apply inline-flex items-center px-4 py-2 border border-glass text-sm font-medium rounded-xl text-primary-700 bg-glass backdrop-blur-md hover:bg-glass-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-300;
+    @apply dark:text-primary-100 dark:border-white/10;
   }
 
   .input {
     @apply block w-full rounded-xl border-platinum-200 bg-white/80 backdrop-blur-md shadow-luxe focus:border-primary-500 focus:ring-primary-500 sm:text-sm transition-all duration-300;
+    @apply dark:bg-secondary-800/80 dark:border-secondary-600 dark:text-platinum-100 dark:placeholder-platinum-400;
   }
 
   .card {
     @apply bg-white/80 backdrop-blur-md rounded-2xl shadow-luxe border border-platinum-200/50 overflow-hidden transition-all duration-300 hover:shadow-glass-lg hover:scale-[1.02];
+    @apply dark:bg-secondary-800/80 dark:border-secondary-700/60;
   }
 
   .glass-card {
-    @apply bg-white/90 backdrop-blur-md rounded-2xl shadow-luxe border border-platinum-200/50;
+    @apply bg-white/90 backdrop-blur-md rounded-2xl shadow-luxe border border-platinum-200/50 transition-colors duration-300;
+    @apply dark:bg-secondary-800/80 dark:border-secondary-700/60;
   }
 
   .glass-nav {
-    @apply bg-white/95 backdrop-blur-xl border-b border-platinum-200/50;
+    @apply bg-white/95 backdrop-blur-xl border-b border-platinum-200/50 transition-colors duration-300;
+    @apply dark:bg-secondary-900/90 dark:border-secondary-700/60;
   }
 
   .glass-section {
-    @apply bg-gradient-to-br from-white/5 to-white/15 backdrop-blur-md rounded-3xl shadow-glass-lg border border-platinum-200/50;
+    @apply bg-gradient-to-br from-white/5 to-white/15 backdrop-blur-md rounded-3xl shadow-glass-lg border border-platinum-200/50 transition-colors duration-300;
+    @apply dark:border-secondary-700/50;
   }
 
   .glass-hero {
     @apply bg-gradient-to-br from-sapphire-900/40 via-sapphire-800/30 to-sapphire-900/20 backdrop-blur-xs;
+    @apply dark:from-black/60 dark:via-black/50 dark:to-black/40;
   }
 }
