@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiFilter, FiArrowRight, FiTrendingUp, FiDollarSign } from 'react-icons/fi';
 import { FaEthereum } from 'react-icons/fa';
+import CountUp from '../components/CountUp';
 
 function Properties() {
   const [showFilters, setShowFilters] = useState(false);
@@ -176,15 +177,15 @@ function Properties() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sapphire-50 via-white to-platinum-100">
+    <div className="min-h-screen bg-gradient-to-br from-sapphire-50 via-white to-platinum-100 dark:from-secondary-900 dark:via-sapphire-900 dark:to-secondary-900">
       {/* Header */}
       <div className="glass-nav">
         <div className="container py-6">
           <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold text-sapphire-800">Investment Properties</h1>
+            <h1 className="text-3xl font-bold text-sapphire-800 dark:text-platinum-100">Investment Properties</h1>
             <div className="flex items-center space-x-4">
               <button
-                className={`p-2 rounded-xl transition-all duration-300 ${showFilters ? 'glass-card text-primary-600' : 'hover:bg-glass'}`}
+                className={`p-2 rounded-xl transition-all duration-300 ${showFilters ? 'glass-card text-primary-600 dark:text-primary-300' : 'hover:bg-glass'}`}
                 onClick={() => setShowFilters(!showFilters)}
               >
                 <FiFilter size={20} />
@@ -200,7 +201,7 @@ function Properties() {
           <div className="container py-6">
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
               <div>
-                <label className="block text-sm font-medium text-sapphire-700 mb-1">
+                <label className="block text-sm font-medium text-sapphire-700 dark:text-platinum-100 mb-1">
                   Price Range
                 </label>
                 <select
@@ -216,7 +217,7 @@ function Properties() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-sapphire-700 mb-1">
+                <label className="block text-sm font-medium text-sapphire-700 dark:text-platinum-100 mb-1">
                   Property Type
                 </label>
                 <select
@@ -232,7 +233,7 @@ function Properties() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-sapphire-700 mb-1">
+                <label className="block text-sm font-medium text-sapphire-700 dark:text-platinum-100 mb-1">
                   Location
                 </label>
                 <input
@@ -245,7 +246,7 @@ function Properties() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-sapphire-700 mb-1">
+                <label className="block text-sm font-medium text-sapphire-700 dark:text-platinum-100 mb-1">
                   Minimum ROI
                 </label>
                 <input
@@ -258,7 +259,7 @@ function Properties() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-sapphire-700 mb-1">
+                <label className="block text-sm font-medium text-sapphire-700 dark:text-platinum-100 mb-1">
                   Funding Status
                 </label>
                 <select
@@ -274,7 +275,7 @@ function Properties() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-sapphire-700 mb-1">
+                <label className="block text-sm font-medium text-sapphire-700 dark:text-platinum-100 mb-1">
                   Sort By
                 </label>
                 <select
@@ -312,32 +313,32 @@ function Properties() {
                     alt={property.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute top-4 right-4 glass-card px-3 py-1 text-primary-600 font-semibold text-sm">
+                  <div className="absolute top-4 right-4 glass-card px-3 py-1 text-primary-600 dark:text-primary-300 font-semibold text-sm">
                     {property.status}
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 text-sapphire-800">{property.title}</h3>
-                  <p className="text-platinum-600 mb-4">{property.location}</p>
+                  <h3 className="text-xl font-semibold mb-2 text-sapphire-800 dark:text-platinum-100">{property.title}</h3>
+                  <p className="text-platinum-600 dark:text-platinum-300 mb-4">{property.location}</p>
 
                   {/* Price and ROI */}
                   <div className="flex justify-between items-center mb-4">
                     <div>
-                      <p className="text-sm text-platinum-500">Investment Price</p>
+                      <p className="text-sm text-platinum-500 dark:text-platinum-400">Investment Price</p>
                       <div className="flex items-center">
-                        <FiDollarSign className="text-primary-600" />
-                        <span className="font-semibold text-sapphire-800">${property.price.usd.toLocaleString()}</span>
+                        <FiDollarSign className="text-primary-600 dark:text-primary-300" />
+                        <span className="font-semibold text-sapphire-800 dark:text-platinum-100">${property.price.usd.toLocaleString()}</span>
                       </div>
-                      <div className="flex items-center text-sm text-primary-600">
+                      <div className="flex items-center text-sm text-primary-600 dark:text-primary-300">
                         <FaEthereum className="mr-1" />
                         <span>{property.price.eth} ETH</span>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm text-platinum-500">Annual ROI</p>
-                      <div className="flex items-center justify-end text-green-600">
+                      <p className="text-sm text-platinum-500 dark:text-platinum-400">Annual ROI</p>
+                      <div className="flex items-center justify-end text-green-600 dark:text-green-400">
                         <FiTrendingUp className="mr-1" />
-                        <span className="font-semibold">{property.roi}</span>
+                        <span className="font-semibold"><CountUp end={parseFloat(property.roi)} decimals={1} suffix="%" /></span>
                       </div>
                     </div>
                   </div>
@@ -345,26 +346,26 @@ function Properties() {
                   {/* Investment Metrics */}
                   <div className="space-y-2 mb-4">
                     <div className="flex justify-between text-sm">
-                      <span className="text-platinum-600">Monthly Income</span>
-                      <span className="font-medium text-sapphire-700">{property.metrics.monthlyIncome}</span>
+                      <span className="text-platinum-600 dark:text-platinum-300">Monthly Income</span>
+                      <span className="font-medium text-sapphire-700 dark:text-platinum-100">{property.metrics.monthlyIncome}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-platinum-600">Appreciation</span>
-                      <span className="font-medium text-sapphire-700">{property.metrics.appreciation}</span>
+                      <span className="text-platinum-600 dark:text-platinum-300">Appreciation</span>
+                      <span className="font-medium text-sapphire-700 dark:text-platinum-100">{property.metrics.appreciation}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-platinum-600">Min Investment</span>
-                      <span className="font-medium text-sapphire-700">{property.metrics.minInvestment}</span>
+                      <span className="text-platinum-600 dark:text-platinum-300">Min Investment</span>
+                      <span className="font-medium text-sapphire-700 dark:text-platinum-100">{property.metrics.minInvestment}</span>
                     </div>
                   </div>
 
                   {/* Funding Progress */}
                   <div className="mb-4">
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-platinum-600">Funding Progress</span>
-                      <span className="font-medium text-sapphire-700">{property.metrics.funded}</span>
+                      <span className="text-platinum-600 dark:text-platinum-300">Funding Progress</span>
+                      <span className="font-medium text-sapphire-700 dark:text-platinum-100">{property.metrics.funded}</span>
                     </div>
-                    <div className="w-full bg-platinum-100 rounded-full h-2">
+                    <div className="w-full bg-platinum-100 dark:bg-secondary-700 rounded-full h-2">
                       <div
                         className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full"
                         style={{ width: property.metrics.funded }}
@@ -373,16 +374,16 @@ function Properties() {
                   </div>
 
                   {/* Token Details */}
-                  <div className="glass-card bg-sapphire-50/50 p-3 mb-4">
+                  <div className="glass-card bg-sapphire-50/50 dark:bg-secondary-800/50 p-3 mb-4">
                     <div className="flex justify-between text-sm">
-                      <span className="text-platinum-600">Available Tokens</span>
-                      <span className="font-medium text-sapphire-700">
+                      <span className="text-platinum-600 dark:text-platinum-300">Available Tokens</span>
+                      <span className="font-medium text-sapphire-700 dark:text-platinum-100">
                         {property.tokenDetails.availableTokens.toLocaleString()} / {property.tokenDetails.totalTokens.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm mt-1">
-                      <span className="text-platinum-600">Token Price</span>
-                      <span className="font-medium text-sapphire-700">{property.tokenDetails.tokenPrice}</span>
+                      <span className="text-platinum-600 dark:text-platinum-300">Token Price</span>
+                      <span className="font-medium text-sapphire-700 dark:text-platinum-100">{property.tokenDetails.tokenPrice}</span>
                     </div>
                   </div>
 

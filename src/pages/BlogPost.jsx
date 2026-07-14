@@ -49,7 +49,7 @@ function BlogPost() {
   };
 
   return (
-    <div className="min-h-screen bg-secondary-50">
+    <div className="min-h-screen bg-secondary-50 dark:bg-transparent">
       {/* Hero Section */}
       <div className="relative h-[400px]">
         <img
@@ -99,7 +99,7 @@ function BlogPost() {
             transition={{ delay: 0.2 }}
             className="lg:col-span-2"
           >
-            <div className="bg-white rounded-lg shadow-md p-8">
+            <div className="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-8">
               <div 
                 className="prose prose-lg max-w-none"
                 dangerouslySetInnerHTML={{ __html: post.content }}
@@ -115,26 +115,26 @@ function BlogPost() {
           >
             <div className="space-y-6">
               {/* Share */}
-              <div className="bg-white rounded-lg shadow-md p-6">
+              <div className="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6">
                 <h3 className="text-lg font-semibold mb-4 flex items-center">
                   <FiShare2 className="mr-2" />
                   Share this article
                 </h3>
                 <div className="flex space-x-4">
-                  <button className="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200">
+                  <button className="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 dark:bg-blue-900/40 dark:text-blue-300 dark:hover:bg-blue-900/60">
                     <FaFacebook size={20} />
                   </button>
-                  <button className="p-2 rounded-full bg-sky-100 text-sky-500 hover:bg-sky-200">
+                  <button className="p-2 rounded-full bg-sky-100 text-sky-500 hover:bg-sky-200 dark:bg-sky-900/40 dark:text-sky-300 dark:hover:bg-sky-900/60">
                     <FaTwitter size={20} />
                   </button>
-                  <button className="p-2 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200">
+                  <button className="p-2 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900/40 dark:text-blue-300 dark:hover:bg-blue-900/60">
                     <FaLinkedin size={20} />
                   </button>
                 </div>
               </div>
 
               {/* Tags */}
-              <div className="bg-white rounded-lg shadow-md p-6">
+              <div className="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6">
                 <h3 className="text-lg font-semibold mb-4 flex items-center">
                   <FiTag className="mr-2" />
                   Tags
@@ -143,7 +143,7 @@ function BlogPost() {
                   {post.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-secondary-100 text-secondary-600 rounded-full text-sm"
+                      className="px-3 py-1 bg-secondary-100 text-secondary-600 dark:bg-secondary-700 dark:text-platinum-300 rounded-full text-sm"
                     >
                       {tag}
                     </span>
